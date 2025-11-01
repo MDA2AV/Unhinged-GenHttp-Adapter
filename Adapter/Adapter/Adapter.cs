@@ -14,6 +14,8 @@ namespace Adapter;
 
 public static class Adapter
 {
+    private const int BufferSize = 8192;
+    
     public static UnhingedEngine.UnhingedBuilder Map(
         this UnhingedEngine.UnhingedBuilder builder, 
         IHandlerBuilder handlerBuilder, 
@@ -48,7 +50,7 @@ public static class Adapter
         }
     }
 
-    private static void MapResponse(IResponse response, Connection connection)
+    private static async ValueTask MapResponse(IResponse response, Connection connection)
     {
         connection.WriteBuffer.WriteUnmanaged(HttpStatusLines.Lines[response.Status.RawStatus]);
         connection.WriteBuffer.WriteUnmanaged(ServerHeaderName);
@@ -91,10 +93,12 @@ public static class Adapter
         
         connection.WriteBuffer.WriteUnmanaged(DateHelper.HeaderBytes);
         
-        // response.Content must call WriteAsync here
-        // TODO: Bridge the Stream with connection.WriteBuffer
+        // TODO: Improve performance here, cache or something, can't be creating and disposing streams every request?
+        // TODO: Maybe consider using [ThreadStatic]
+        await using var stream = connection.WriteBuffer.AsUnhingedStream();
+        await response.Content!.WriteAsync(stream, BufferSize);
         
-        connection.WriteBuffer.WriteUnmanaged("Hello, World!"u8);
+        //connection.WriteBuffer.WriteUnmanaged("Hello, World!"u8);
     }
 
     private static void AdvanceTo(Request request, string registeredPath)
