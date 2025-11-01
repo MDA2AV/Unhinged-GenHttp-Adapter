@@ -1,3 +1,4 @@
+using System.Buffers.Text;
 using System.Diagnostics.Contracts;
 using System.Runtime.CompilerServices;
 using Adapter.Protocol;
@@ -74,13 +75,24 @@ public static class Adapter
                 connection.WriteBuffer.WriteHeaderUnmanaged("Set-Cookie", $"{cookie.Key}={cookie.Value.Value}");
             }
         }
-
+        
         if (response.ContentLength is not null)
         {
-            connection.WriteBuffer.WriteHeaderUnmanaged("Content-Length", response.ContentLength.ToString());
+            connection.WriteBuffer.WriteUnmanaged(ContentLengthHeader);
+            
+            var buffer = connection.WriteBuffer.GetSpan(16); // 16 is enough for any int in UTF-8
+            
+            if (!Utf8Formatter.TryFormat((ulong)response.ContentLength, buffer, out var written))
+                throw new InvalidOperationException("Failed to format int");
+            
+            connection.WriteBuffer.Advance(written);
+            connection.WriteBuffer.Write("\r\n"u8);
         }
         
         connection.WriteBuffer.WriteUnmanaged(DateHelper.HeaderBytes);
+        
+        // response.Content must call WriteAsync here
+        // TODO: Bridge the Stream with connection.WriteBuffer
         
         connection.WriteBuffer.WriteUnmanaged("Hello, World!"u8);
     }

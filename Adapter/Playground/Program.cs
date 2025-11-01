@@ -30,7 +30,7 @@ internal static class Program
     private static LayoutBuilder CreateLayoutBuilder() =>
         Layout
             .Create()
-            .Add("/plaintext", Content.From(Resource.FromString("Hello World!")))
+            .Add("/plaintext", Content.From(Resource.FromString("Hello, World!")))
             .Add("/api", CreateApi());
     
     private static InlineBuilder CreateApi() => 
