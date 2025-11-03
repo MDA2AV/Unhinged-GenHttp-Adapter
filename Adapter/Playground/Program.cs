@@ -1,4 +1,5 @@
-﻿using Adapter;
+﻿using System;
+using Adapter;
 using GenHTTP.Modules.Functional;
 using GenHTTP.Modules.Functional.Provider;
 using GenHTTP.Modules.IO;
@@ -8,13 +9,15 @@ using Unhinged;
 
 namespace Playground;
 
+// dotnet publish -c release -r linux-x64 --no-restore --self-contained
+
 internal static class Program
 {
     public static void Main(string[] args)
     {
         var builder = UnhingedEngine
             .CreateBuilder()
-            .SetNWorkersSolver(() => Environment.ProcessorCount / 2)
+            .SetNWorkersSolver(() => (Environment.ProcessorCount / 2) - 0 )
             .SetBacklog(16384)
             .SetMaxEventsPerWake(512)
             .SetMaxNumberConnectionsPerWorker(512)
@@ -37,5 +40,10 @@ internal static class Program
         Inline
             .Create() 
             .Get("plaintext", () => "Hello, World!")
-            .Get("json", () => "Hello, World!");
+            .Get("json", () => new JsonMessage{ message = "Hello, World!" });
+}
+
+public class JsonMessage
+{
+    public string message { get; set; }
 }

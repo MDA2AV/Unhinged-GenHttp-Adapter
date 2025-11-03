@@ -43,7 +43,7 @@ public static class Adapter
         }
         catch (Exception e)
         {
-            // todo: cannot tell the IP of the client in unhinged
+            // todo: cannot tell the IP of the client in unhinged, will fix
             server.Companion?.OnServerError(ServerErrorScope.ServerConnection, null, e);
             throw;
         }
@@ -93,6 +93,10 @@ public static class Adapter
             
             connection.WriteBuffer.Advance(written);
             connection.WriteBuffer.Write("\r\n"u8);
+        }
+        else
+        {
+            connection.WriteBuffer.WriteUnmanaged(TransferEncodingChunkedHeader);
         }
         
         connection.WriteBuffer.WriteUnmanaged(DateHelper.HeaderBytes);
