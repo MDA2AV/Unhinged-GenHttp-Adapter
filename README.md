@@ -1,3 +1,5 @@
+[![NuGet](https://img.shields.io/nuget/v/Unhinged.svg)](https://www.nuget.org/packages/Unhinged.GenHttp.Experimental/)
+
 # Unhinged-GenHttp-Adapter
 
 Note: This project is still under development and some basic features are not available yet.

@@ -29,14 +29,14 @@ jobs:
 
       # Restore dependencies
       - name: Restore dependencies
-        run: dotnet restore Adapter/Adapter/Adapter.csproj
+        run: dotnet restore Adapter/Adapter.csproj
 
       # Build the project
       - name: Build project
-        run: dotnet build Adapter/Adapter/Adapter.csproj --configuration Release --no-restore
+        run: dotnet build Adapter/Adapter.csproj --configuration Release --no-restore
         
       - name: Pack NuGet package
-        run: dotnet pack Adapter/Adapter/Adapter.csproj --configuration Release --output ./artifacts
+        run: dotnet pack Adapter/Adapter.csproj --configuration Release --output ./artifacts
 
       # Run tests only for .NET 9
       #- name: Run tests (only for .NET 9)
