@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using Unhinged;
 
-namespace Adapter.Utils;
+namespace Unhinged.GenHttp.Experimental.Utils;
 
 internal static class ConnectionUtils
 {

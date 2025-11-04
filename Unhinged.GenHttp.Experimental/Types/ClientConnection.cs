@@ -4,7 +4,7 @@ using GenHTTP.Api.Infrastructure;
 using GenHTTP.Api.Protocol;
 using Unhinged;
 
-namespace Adapter.Types;
+namespace Unhinged.GenHttp.Experimental.Types;
 
 public sealed class ClientConnection : IClientConnection
 {

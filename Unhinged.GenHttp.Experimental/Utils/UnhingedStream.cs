@@ -1,7 +1,7 @@
 using System.Buffers;
 using System.IO.Pipelines;
 
-namespace Adapter.Utils;
+namespace Unhinged.GenHttp.Experimental.Utils;
 
 public sealed class UnhingedStream : Stream
 {

@@ -1,6 +1,6 @@
 using GenHTTP.Modules.IO.Streaming;
 
-namespace Adapter.Utils;
+namespace Unhinged.GenHttp.Experimental.Utils;
 
 /// <summary>
 /// Implements chunked transfer encoding by letting the client

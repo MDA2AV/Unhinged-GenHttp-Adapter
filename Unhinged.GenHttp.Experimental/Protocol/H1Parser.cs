@@ -1,6 +1,6 @@
 using System.Runtime.CompilerServices;
 
-namespace Adapter.Protocol;
+namespace Unhinged.GenHttp.Experimental.Protocol;
 
 internal static class H1Parser
 {

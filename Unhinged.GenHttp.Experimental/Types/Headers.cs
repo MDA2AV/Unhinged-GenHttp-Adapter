@@ -3,7 +3,7 @@ using GenHTTP.Api.Protocol;
 using GenHTTP.Engine.Shared.Types;
 using Unhinged;
 
-namespace Adapter.Types;
+namespace Unhinged.GenHttp.Experimental.Types;
 
 public sealed class Headers : IHeaderCollection
 {

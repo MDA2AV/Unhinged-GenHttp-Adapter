@@ -4,7 +4,7 @@ using GenHTTP.Api.Routing;
 using GenHTTP.Engine.Shared.Types;
 using Unhinged;
 
-namespace Adapter.Types;
+namespace Unhinged.GenHttp.Experimental.Types;
 
 public sealed class Request : IRequest
 {

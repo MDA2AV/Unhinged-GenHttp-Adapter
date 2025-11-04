@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Text.Json;
-using Adapter;
 using GenHTTP.Api.Protocol;
 using GenHTTP.Modules.Conversion.Serializers.Json;
 using GenHTTP.Modules.Functional;
@@ -10,6 +9,7 @@ using GenHTTP.Modules.Layouting;
 using GenHTTP.Modules.Layouting.Provider;
 using GenHTTP.Modules.Webservices;
 using Unhinged;
+using Unhinged.GenHttp.Experimental;
 
 namespace Playground;
 

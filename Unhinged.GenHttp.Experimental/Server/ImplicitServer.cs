@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 using GenHTTP.Api.Content;
 using GenHTTP.Api.Infrastructure;
 
-namespace Adapter.Server;
+namespace Unhinged.GenHttp.Experimental.Server;
 
 public sealed class ImplicitServer : IServer
 {

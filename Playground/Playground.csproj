@@ -15,7 +15,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Adapter\Adapter.csproj" />
+      <ProjectReference Include="..\Unhinged.GenHttp.Experimental\Unhinged.GenHttp.Experimental.csproj" />
     </ItemGroup>
 
     <ItemGroup>

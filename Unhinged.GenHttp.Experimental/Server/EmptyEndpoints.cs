@@ -1,5 +1,5 @@
 using GenHTTP.Api.Infrastructure;
 
-namespace Adapter.Server;
+namespace Unhinged.GenHttp.Experimental.Server;
 
 public class EmptyEndpoints : List<IEndPoint>, IEndPointCollection;

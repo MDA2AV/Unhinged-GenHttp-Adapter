@@ -13,15 +13,16 @@
         <RepositoryType>git</RepositoryType>
 
         <PackageId>Unhinged.GenHttp.Experimental</PackageId>
-        <AssemblyVersion>9.8.0</AssemblyVersion>
-        <FileVersion>9.8.0</FileVersion>
-        <Version>9.8.0</Version>
+        <AssemblyVersion>9.8.1</AssemblyVersion>
+        <FileVersion>9.8.1</FileVersion>
+        <Version>9.8.1</Version>
         
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>Unhinged Adapter GenHttp</PackageTags>
         <PackageLicenseFile>LICENSE</PackageLicenseFile>
         <Description>https://github.com/MDA2AV/Unhinged-GenHttp-Adapter</Description>
         <PackageProjectUrl>https://github.com/MDA2AV/Unhinged-GenHttp-Adapter</PackageProjectUrl>
+        <RootNamespace>Adapter</RootNamespace>
 
         <!--<RuntimeIdentifier>linux-x64</RuntimeIdentifier>-->
     </PropertyGroup>

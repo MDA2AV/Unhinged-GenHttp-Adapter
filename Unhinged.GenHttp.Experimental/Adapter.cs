@@ -1,16 +1,16 @@
 using System.Buffers.Text;
 using System.Diagnostics.Contracts;
-using Adapter.Protocol;
-using Adapter.Server;
-using Adapter.Types;
-using Adapter.Utils;
 using GenHTTP.Api.Content;
 using GenHTTP.Api.Infrastructure;
 using GenHTTP.Api.Protocol;
 using GenHTTP.Engine.Shared.Types;
 using Unhinged;
+using Unhinged.GenHttp.Experimental.Protocol;
+using Unhinged.GenHttp.Experimental.Server;
+using Unhinged.GenHttp.Experimental.Types;
+using Unhinged.GenHttp.Experimental.Utils;
 
-namespace Adapter;
+namespace Unhinged.GenHttp.Experimental;
 
 public static class Adapter
 {

@@ -3,7 +3,7 @@ using System.Diagnostics.Contracts;
 using GenHTTP.Api.Protocol;
 using Unhinged;
 
-namespace Adapter.Types;
+namespace Unhinged.GenHttp.Experimental.Types;
 
 public sealed class Query : IRequestQuery
 {
