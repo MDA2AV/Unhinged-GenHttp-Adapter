@@ -58,7 +58,13 @@ internal static class Program
         Layout
             .Create()
             .AddService<BenchmarkService>("bench") // Adding a webservice
-            .Add("/plaintext", Content.From(Resource.FromString("Hello, World!"))); // Direct resource for blazing performance
+
+            // High performance endpoints
+            .Add("/json",                          
+                 Content.From(Resource.FromString(
+                    JsonSerializer.Serialize(new JsonMessage{ message = "Hello, World!" }))))
+            .Add("/plaintext", 
+                 Content.From(Resource.FromString("Hello, World!"))); // Direct resource for blazing performance
 }
 
 public class BenchmarkService
@@ -74,5 +80,10 @@ public class BenchmarkService
             }, JsonSerializerOptions.Default))
             .Build();
     }
+}
+
+public class JsonMessage
+{
+    public string message { get; set; }
 }
 ```
