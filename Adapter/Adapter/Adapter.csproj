@@ -5,6 +5,23 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
 
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+        <Title>Unhinged.GenHttp.Experimental</Title>
+        <Authors>Diogo Martins, Andreas Nägeli</Authors>
+        <RepositoryUrl>https://github.com/MDA2AV/Unhinged-GenHttp-Adapter</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        
+        <AssemblyVersion>9.8.0</AssemblyVersion>
+        <FileVersion>9.8.0</FileVersion>
+        <Version>9.8.0</Version>
+        
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageTags>Unhinged Adapter GenHttp</PackageTags>
+        <PackageLicenseFile>LICENSE</PackageLicenseFile>
+        <Description>https://github.com/MDA2AV/Unhinged-GenHttp-Adapter</Description>
+        <PackageProjectUrl>https://github.com/MDA2AV/Unhinged-GenHttp-Adapter</PackageProjectUrl>
+
         <!--<RuntimeIdentifier>linux-x64</RuntimeIdentifier>-->
     </PropertyGroup>
 
