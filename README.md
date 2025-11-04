@@ -6,6 +6,9 @@ Note: This project is still under development and some basic features are not av
 
 Undergoing task: Support requests with content (either known Content-Length or Transfer-Encoding: chunked)
 
+[Unhinged Engine](https://github.com/MDA2AV/Unhinged)
+[GenHttp](https://github.com/Kaliumhexacyanoferrat/GenHTTP)
+
 # What is Unhinged?
 
 Unhinged is an experimental, ultra-high-performance HTTP/1.1 server built from the ground up to bypass every layer of overhead in the .NET networking stack. Unlike all existing C# web frameworks — including Kestrel, ASP.NET, and other custom servers — Unhinged does not use System.Net.Sockets or SocketAsyncEventArgs. Instead, it interfaces directly with Linux system calls like epoll_wait, accept4, and eventfd through P/Invoke, giving it complete control over connection multiplexing, scheduling, and I/O readiness. This design eliminates the managed socket layer, thread pool dispatch, and kernel transition overhead typical of conventional .NET servers. Running under Native AOT with pinned, cache-aligned buffers and zero GC allocations, Unhinged achieves deterministic performance at massive concurrency levels — targeting tens of millions of requests per second in TechEmpower-style benchmarks. It’s not just a web server — it’s a proof that .NET can operate at the same level as hand-optimized C or Rust servers when freed from its abstractions.
