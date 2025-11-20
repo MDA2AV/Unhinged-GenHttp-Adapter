@@ -39,7 +39,7 @@ public static class Adapter
         {
             context.Request.Configure(server, connection);
 
-            using var response = await handler.HandleAsync(context.Request);
+            var response = await handler.HandleAsync(context.Request);
 
             if (response != null)
             {
