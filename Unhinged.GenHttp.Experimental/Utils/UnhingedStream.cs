@@ -57,7 +57,7 @@ public sealed class UnhingedStream : Stream
     public override void SetLength(long value) => throw new NotSupportedException();
 }
 
-public static class IBufferWriterExtensions
+public static class BufferWriterExtensions
 {
     public static UnhingedStream AsUnhingedStream(this IBufferWriter<byte> writer, bool completeOnDispose = false)
         => new UnhingedStream(writer, completeOnDispose);

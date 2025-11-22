@@ -13,41 +13,41 @@ public sealed class Request : IRequest
 
     private bool _freshResponse = true;
 
-    private IServer? _Server;
+    private IServer? _server;
 
-    private IClientConnection? _Client;
-    private IClientConnection? _LocalCLient;
+    private IClientConnection? _client;
+    private IClientConnection? _localCLient;
 
-    private FlexibleRequestMethod? _Method;
-    private RoutingTarget? _Target;
+    private FlexibleRequestMethod? _method;
+    private RoutingTarget? _target;
 
-    private readonly RequestProperties _Properties = new();
+    private readonly RequestProperties _properties = new();
 
-    private readonly Query _Query = new();
+    private readonly Query _query = new();
 
-    private readonly CookieCollection _Cookies = new();
+    private readonly CookieCollection _cookies = new();
 
-    private readonly ForwardingCollection _Forwardings = new();
+    private readonly ForwardingCollection _forwardings = new();
 
-    private readonly Headers _Headers = new();
+    private readonly Headers _headers = new();
 
     #region Get-/Setters
 
-    public IRequestProperties Properties => _Properties;
+    public IRequestProperties Properties => _properties;
 
-    public IServer Server => _Server ?? throw new InvalidOperationException("Request is not initialized yet");
+    public IServer Server => _server ?? throw new InvalidOperationException("Request is not initialized yet");
 
     public IEndPoint EndPoint => throw new InvalidOperationException("EndPoint is not available as it is managed by Unhinged");
 
-    public IClientConnection Client => _Client ?? throw new InvalidOperationException("Request is not initialized yet");
+    public IClientConnection Client => _client ?? throw new InvalidOperationException("Request is not initialized yet");
 
-    public IClientConnection LocalClient => _LocalCLient ?? throw new InvalidOperationException("Request is not initialized yet");
+    public IClientConnection LocalClient => _localCLient ?? throw new InvalidOperationException("Request is not initialized yet");
 
     public HttpProtocol ProtocolType { get; private set; }
 
-    public FlexibleRequestMethod Method => _Method ?? throw new InvalidOperationException("Request is not initialized yet");
+    public FlexibleRequestMethod Method => _method ?? throw new InvalidOperationException("Request is not initialized yet");
 
-    public RoutingTarget Target => _Target?? throw new InvalidOperationException("Request is not initialized yet");
+    public RoutingTarget Target => _target?? throw new InvalidOperationException("Request is not initialized yet");
 
     public string? UserAgent => this["User-Agent"];
 
@@ -57,13 +57,13 @@ public sealed class Request : IRequest
 
     public string? this[string additionalHeader] => Headers.GetValueOrDefault(additionalHeader);
 
-    public IRequestQuery Query => _Query;
+    public IRequestQuery Query => _query;
 
-    public ICookieCollection Cookies => _Cookies;
+    public ICookieCollection Cookies => _cookies;
 
-    public IForwardingCollection Forwardings => _Forwardings;
+    public IForwardingCollection Forwardings => _forwardings;
 
-    public IHeaderCollection Headers => _Headers;
+    public IHeaderCollection Headers => _headers;
 
     // TODO: Wrap the request content received by the client
     // For now there is never content, Unhinged doesn't yet support requests with body
@@ -116,33 +116,33 @@ public sealed class Request : IRequest
 
     public void Configure(ImplicitServer server, Connection connection)
     {
-        _Server = server;
+        _server = server;
 
         Connection = connection;
 
         // todo: Unhinged only supports Http11
         ProtocolType = HttpProtocol.Http11;
 
-        _Method = FlexibleRequestMethod.Get(connection.H1HeaderData.HttpMethod);
-        _Target = new RoutingTarget(WebPath.FromString(connection.H1HeaderData.Route));
+        _method = FlexibleRequestMethod.Get(connection.H1HeaderData.HttpMethod);
+        _target = new RoutingTarget(WebPath.FromString(connection.H1HeaderData.Route));
 
-        _Headers.SetConnection(connection);
-        _Query.SetConnection(connection);
+        _headers.SetConnection(connection);
+        _query.SetConnection(connection);
 
         if (connection.H1HeaderData.Headers.TryGetValue("forwarded", out var entry))
         {
-            _Forwardings.Add(entry);
+            _forwardings.Add(entry);
         }
         else
         {
-            _Forwardings.TryAddLegacy(Headers);
+            _forwardings.TryAddLegacy(Headers);
         }
 
-        _LocalCLient = new ClientConnection(connection);
+        _localCLient = new ClientConnection(connection);
 
         // todo: potential client certificate is not exposed by unhinged
         // Unhinged does not support Tls
-        _Client = _Forwardings.DetermineClient(null) ?? LocalClient;
+        _client = _forwardings.DetermineClient(null) ?? LocalClient;
     }
 
     private CookieCollection FetchCookies(Connection connection)
@@ -160,13 +160,19 @@ public sealed class Request : IRequest
 
     internal void Reset()
     {
-        _Headers.SetConnection(null);
-        _Query.SetConnection(null);
+        _headers.SetConnection(null);
+        _query.SetConnection(null);
 
-        _Server = null;
-        _Client = null;
-        _LocalCLient = null;
-        _Method = null;
+        _cookies.Clear();
+        _forwardings.Clear();
+        _properties.Clear();
+        
+        _server = null;
+        _client = null;
+        _localCLient = null;
+        _method = null;
+        
+        _freshResponse = true;
     }
 
     #endregion
