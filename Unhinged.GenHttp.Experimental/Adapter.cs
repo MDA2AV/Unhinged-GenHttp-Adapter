@@ -72,7 +72,9 @@ public static class Adapter
 
         if (response.ContentType is not null)
         {
-            connection.WriteBuffer.WriteHeaderUnmanaged(ContentTypeHeader, response.ContentType.RawType);
+            var contentType = (response.ContentType?.Charset != null ? $"{response.ContentType?.RawType}; charset={response.ContentType?.Charset}" : response.ContentType?.RawType) ?? "application/octet-stream";
+            
+            connection.WriteBuffer.WriteHeaderUnmanaged(ContentTypeHeader, contentType);
         }
 
         if (response.Modified != null)
