@@ -13,7 +13,6 @@
         <RepositoryType>git</RepositoryType>
 
         <PackageId>Unhinged.GenHttp.Experimental</PackageId>
-
         <AssemblyVersion>10.4.0</AssemblyVersion>
         <FileVersion>10.4.0</FileVersion>
         <Version>10.4.0</Version>
@@ -39,7 +38,8 @@
 
         <PackageReference Include="Unhinged" Version="9.0.7" />
 
-        <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="10.0.1" />
+        <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="10.0.2" />
+
     </ItemGroup>
 
     <ItemGroup>

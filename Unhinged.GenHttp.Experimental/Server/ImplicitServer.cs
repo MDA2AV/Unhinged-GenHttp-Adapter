@@ -6,7 +6,8 @@ namespace Unhinged.GenHttp.Experimental.Server;
 
 public sealed class ImplicitServer : IServer
 {
-
+    private static readonly IEndPointCollection EmptyEndpoints = new EmptyEndpoints();
+    
     #region Get-/Setters
 
     public string Version => RuntimeInformation.FrameworkDescription;
@@ -23,7 +24,7 @@ public sealed class ImplicitServer : IServer
         }
     }
 
-    public IEndPointCollection EndPoints { get; }
+    public IEndPointCollection EndPoints => EmptyEndpoints;
 
     public IServerCompanion? Companion { get; }
 
@@ -37,8 +38,6 @@ public sealed class ImplicitServer : IServer
     {
         Handler = handler;
         Companion = companion;
-
-        EndPoints = new EmptyEndpoints();
 
         Running = true;
     }
