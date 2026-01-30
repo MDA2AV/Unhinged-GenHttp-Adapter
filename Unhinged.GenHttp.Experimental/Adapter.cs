@@ -18,8 +18,6 @@ public static class Adapter
 
     private static readonly DefaultObjectPool<ClientContext> ContextPool = new(new ClientContextPolicy(), 65536);
 
-    private static readonly ConcurrentDictionary<string, ImplicitServer> ServerCache = [];
-
     public static UnhingedEngine.UnhingedBuilder Map(
         this UnhingedEngine.UnhingedBuilder builder,
         IHandlerBuilder handlerBuilder,
@@ -31,7 +29,7 @@ public static class Adapter
 
     private static async ValueTask GenHttpAsyncStaticHandler(Connection connection, IHandler handler, IServerCompanion? companion)
     {
-        var server = ServerCache.GetOrAdd("/", _ => new ImplicitServer(handler, companion));
+        var server = new ImplicitServer(handler, companion);
 
         var context = ContextPool.Get();
 
