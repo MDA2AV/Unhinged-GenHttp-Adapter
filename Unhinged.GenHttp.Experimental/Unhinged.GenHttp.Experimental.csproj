@@ -13,9 +13,9 @@
         <RepositoryType>git</RepositoryType>
 
         <PackageId>Unhinged.GenHttp.Experimental</PackageId>
-        <AssemblyVersion>10.4.0</AssemblyVersion>
-        <FileVersion>10.4.0</FileVersion>
-        <Version>10.4.0</Version>
+        <AssemblyVersion>10.4.1</AssemblyVersion>
+        <FileVersion>10.4.1</FileVersion>
+        <Version>10.4.1</Version>
 
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>Unhinged Adapter GenHttp</PackageTags>
